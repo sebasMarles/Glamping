@@ -20,7 +20,9 @@ class CabinController extends Controller
      */
     public function store(Request $request)
     {
-        //guardar cabaña
+        $cabin = Cabin::create($request->all());
+
+        return response()->json(['data' => $cabin], 201);
     }
 
     /**
@@ -28,7 +30,7 @@ class CabinController extends Controller
      */
     public function show(Cabin $cabin)
     {
-        //mostrar cabaña
+        return response()->json(['data' => $cabin], 200);
     }
 
     /**
@@ -36,7 +38,9 @@ class CabinController extends Controller
      */
     public function update(Request $request, Cabin $cabin)
     {
-        //actualizar cabaña
+        $cabin->update($request->all());
+
+        return response()->json(['data' => $cabin], 200);
     }
 
     /**
@@ -44,6 +48,8 @@ class CabinController extends Controller
      */
     public function destroy(Cabin $cabin)
     {
-        //destruye cabaña
+        $cabin->delete();
+
+        return response()->json(null, 204);
     }
 }
